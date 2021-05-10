@@ -5,24 +5,20 @@
 
 # Table of contents
 
-- [raspi_LiveBackup](#raspi-livebackup)
-- [Table of contents](#table-of-contents)
-  * [Overview](#overview)
+- [Overview](#overview)
   * [Background](#background)
-  * [use case / why](#use-case---why)
-  * [Duration Time / Time Lap](#duration-time---time-lap)
+  * [use case or why](#use-case-or-why)
+  * [Exmple test times](#example-test-times)
 - [Installation](#installation)
   * [pishrink](#pishrink)
   * [Copy this script](#copy-this-script)
-  * [Edit the _backup_full_image.sh](#edit-the--backup-full-imagesh)
-  * [Mount](#mount)
-  * [First use](#first-use)
-  * [crontab](#crontab)
+  * [Configure the backup script](#configure-the-backup-script)
+  * [Mount info](#mount-info)
+- [First use](#first-use)
+- [crontab](#crontab)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
- 
   
-## Overview  
+# Overview  
 * Does a live backup to a img file to SMB share  
 * shrink the file with the help of pishrink  
 * cleanup on a regular base   
@@ -37,7 +33,7 @@ But who wrote it, to be honest that got lost a long the way of testing and tryin
 Maybe a different person will take this as a starting pint to create something better.   
 In other words do not get offended by this, just ignore it in this case .  
   
-## use case / why 
+## use case or why 
 The story goes like this:  
 I use a raspi which runs NodeRed, Domotiz, mosquitto, a co2 sensor and a DHT22 sensor. So by time the raspi get more important than it make sense without a backup.  
 Since beginning of 2020 I created a backup script running a daily backup of nodred and domotiz (scripts and DB), but   
@@ -52,7 +48,7 @@ After "solving" aka use of [PiShrink](https://github.%20com/Drewsif/PiShrink) th
 But the backup took ages (aka hours), my used SDCard uses ~ 3,5GB of the 32 GB. So I searched a bit and found a remark that gzip is faster on STDIN and OUT. After using gzip it was acceptable.  
 With all these parts I put all together and this is the script attached.  
   
-## Duration Time / Time Lap  
+## Example test times
 The backup on my Raspi 2 (yes still 2 as mentioned there was actual backup, but now I got a good chance to replace   
 it with a version 4) showed this times:  
   
@@ -113,7 +109,7 @@ chmod a+x _backup_full_image.sh
 sudo apt-get install pv
 ```  
   
-## Edit the _backup_full_image.sh  
+## configure the backup script
 ```  
 nano /home/pi/pishrink/_backup_full_image.sh  
 ```  
@@ -142,7 +138,7 @@ BACKUP_PASSWORD | pasword1234 | the password of the smb user
 BACKUP_MAX_AGE | 181 | the max age of the files in ${BACKUPPATH_MOUNT}/piimages/  
     
   
-## Mount  
+## Mount info 
 * create the BACKUPPATH_MOUNT folder  in /mnt; ```sudo mkdir /mnt/nas-pibackup ```
 * make sure the remote path is writeable, eg. touch a file like ```sudo touch $BACKUPPATH_REMOTE/helloworld```.  
   
