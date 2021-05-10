@@ -9,7 +9,7 @@
 - [Table of contents](#table-of-contents)
   * [Overview](#overview)
   * [Background](#background)
-  * [use case / why The story goes like this:](#use-case---why-the-story-goes-like-this-)
+  * [use case / why](#use-case---why)
   * [Duration Time / Time Lap](#duration-time---time-lap)
 - [Installation](#installation)
   * [pishrink](#pishrink)
@@ -38,7 +38,8 @@ But who wrote it, to be honest that got lost a long the way of testing and tryin
 Maybe a different person will take this as a starting pint to create something better.   
 In other words do not get offended by this, just ignore it in this case .  
   
-## use case / why The story goes like this:  
+## use case / why 
+The story goes like this:  
 I use a raspi which runs NodeRed, Domotiz, mosquitto, a co2 sensor and a DHT22 sensor. So by time the raspi get more important than it make sense without a backup.  
 Since beginning of 2020 I created a backup script running a daily backup of nodred and domotiz (scripts and DB), but   
 there is the main gap of not having a backup for the complete raspi. At least I tend to make over time some changes that got lost as undocumented. And by re-creating the same system that runs over 3 years some steps may got lost. And as you see it is more or less very vital that the system got downtime as small as possible. Preferable 0.  
