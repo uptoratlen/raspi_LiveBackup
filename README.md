@@ -1,6 +1,4 @@
 
-
-
 # raspi_LiveBackup
 
 # Table of contents
@@ -141,10 +139,11 @@ BACKUP_MAX_AGE | 181 | the max age of the files in ${BACKUPPATH_MOUNT}/piimages/
   
 ## Mount info 
 * create the BACKUPPATH_MOUNT folder  in /mnt; ```sudo mkdir /mnt/nas-pibackup ```
-* make sure the remote path is writeable, eg. touch a file like ```sudo touch $BACKUPPATH_REMOTE/helloworld```.  
+* make sure the remote path is writeable, eg. touch a file like ```sudo touch $BACKUPPATH_REMOTE/helloworld```.
+* The script will check if the location is a mmount point and writeable, in case not, it will exit directly.  
   
 ## First use  
-start the script by ```/home/pi/pishrink/_backup_full_image.sh```  
+start the script by ```sudo /home/pi/pishrink/_backup_full_image.sh```  
 * The scrip will mount the remote path  
 * create a gz file  
 * unpack the gz file  
@@ -164,6 +163,6 @@ This will pause the script after the steps to give you either the chance to see 
  Of course the script could be used as a single execute, but I ran it on a monthly base.  
   
 Create a crontab entry like:  
-```0 10 9 * * /home/pi/pishrink/_backup_full_image.sh```  
+```0 10 9 * * sudo /home/pi/pishrink/_backup_full_image.sh```  
 eg. this would do a backup every month on the 9th at 10 AM. Of course that is up to you, how often this script is run.  
 For a easy crontab config see [corontab guru](https://crontab.guru/)  
