@@ -49,7 +49,7 @@ if [$1 = "-d"]; then read -p "Press enter to continue" fi
 
 dd if=/dev/mmcblk0 bs=64K status=progress | gzip -c > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz
 date
-pv $BACKUPPATH/domoimages/${BACKUPFILE}.gz |gunzip > $BACKUPPATH/domoimages/${BACKUPFILE}
+pv ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz |gunzip > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}
 
 if [$1 = "-d"]; then read -p "Press enter to continue" fi
 ${SCRIPT_PATH}/pishrink.sh -v ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}
