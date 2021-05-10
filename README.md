@@ -5,21 +5,9 @@
 
 # Table of contents
 
-- [raspi_LiveBackup](#raspi-livebackup)
-- [Table of contents](#table-of-contents)
-  * [Overview](#overview)
-  * [Background](#background)
-  * [use case / why](#use-case---why)
-  * [Duration Time / Time Lap](#duration-time---time-lap)
-- [Installation](#installation)
-  * [pishrink](#pishrink)
-  * [Copy this script](#copy-this-script)
-  * [Edit the _backup_full_image.sh](#edit-the--backup-full-imagesh)
-  * [Mount](#mount)
-  * [First use](#first-use)
-  * [crontab](#crontab)
+* TOC
+{:toc}
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
   
   
