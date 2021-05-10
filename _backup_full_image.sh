@@ -13,15 +13,13 @@ BACKUP_MAX_AGE=181 # days of retention
 # Config end
 
 #test line
-# BACKUPFILE="piimage_20210510193003.img"
-
 SCRIPT_PATH=$(dirname "$(realpath $0)")
 
 echo Mounting: ${BACKUPPATH_REMOTE} as ${BACKUPPATH_MOUNT}/
-#mount -t cifs -o user=${BACKUP_USER},password=${BACKUP_PASSWORD},rw,file_mode=0777,dir_mode=0777 ${BACKUPPATH_REMOTE} ${BACKUPPATH_MOUNT}/
-mount -t cifs -o user=${BACKUP_USER},password=${BACKUP_PASSWORD},uid=1000,gid=1001 ${BACKUPPATH_REMOTE} ${BACKUPPATH_MOUNT}/
+#mount -t cifs -o user=${BACKUP_USER},password=${BACKUP_PASSWORD},rw,file_mode=0777,dir_mode=0777 ${BACKUPPATH_REMOT$
+mount -t cifs -o user=${BACKUP_USER},password=${BACKUP_PASSWORD},uid=1000,gid=1001 ${BACKUPPATH_REMOTE} ${BACKUPPATH$
 
-if [$1 = "-d"]; then read -p "Press enter to continue" fi
+if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
 
 if mountpoint -q "${BACKUPPATH_MOUNT}"; then
     echo "${BACKUPPATH_MOUNT} is a mountpoint - ok"
@@ -45,21 +43,23 @@ else
     mkdir ${BACKUPPATH_MOUNT}/piimages
 fi
 date
-if [$1 = "-d"]; then read -p "Press enter to continue" fi
+if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
 
-dd if=/dev/mmcblk0 bs=64K status=progress | gzip -c > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz
+#dd if=/dev/mmcblk0 bs=64K status=progress | gzip -c > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz
 date
-pv ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz |gunzip > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}
+#pv ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz |gunzip > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}
 
-if [$1 = "-d"]; then read -p "Press enter to continue" fi
+if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
 ${SCRIPT_PATH}/pishrink.sh -v ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}
 date
 
-if [$1 = "-d"]; then read -p "Press enter to continue" fi
+if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
 
 #Delete backups older than ${BACKUP_MAX_AGE} days
 /usr/bin/find ${BACKUPPATH_MOUNT}/piimages/ -name 'piimage_*.img*' -mtime +${BACKUP_MAX_AGE} -delete
 
 umount ${BACKUPPATH_MOUNT}
+
+
 
 

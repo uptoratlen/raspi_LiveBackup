@@ -58,14 +58,19 @@ it with a version 4) showed this times:
   
 Step | Time  | Remark  
 --- | --- | ---  
-1 | 1h40m | create the img/ZIP (3.5GB used of a 32GB card)  
-2 | 40 m | unzip   
-3 | 30 m | phshrink  
+1 | ~140m | create the img/ZIP (~13GB file as image of a 32GB card)  
+2 | ~50 m | unzip  to img  - speed test showed a better performance than direct to img file 
+3 | ~5 m | phshrink  
   
-This resulted in a 3.5 GB IMG file in less than 3 hours with 0 downtime.  
+This resulted in a 3.5 GB IMG file in less than 5 hours with 0 downtime.  
+The dd stopped after 140minutes. The other two steps are also perfomred on the raspi. Of course if the steps 2 and 3 
+are done pon eg. the remote system. It may be faster. I choose to have the raspi to do the job.
   
 The backup script also does some retention on the previous backups. This makes sense as an automatic should also do   
 retention before space runs out, right  
+
+5h is pretty long, so the intention is not a daily run. But eg. a Monthly or weekly may be usefull.
+At least for myself it worked this way. 
   
 # Installation  
 Here I assume on the raspi the user pi.  
