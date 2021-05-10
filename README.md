@@ -15,6 +15,7 @@
   * [Configure the backup script](#configure-the-backup-script)
   * [Mount info](#mount-info)
 - [First use](#first-use)
+  * [Commandline arg](#commandline-arg)
 - [crontab](#crontab)
 
   
@@ -148,9 +149,16 @@ start the script by ```/home/pi/pishrink/_backup_full_image.sh```
 * create a gz file  
 * unpack the gz file  
 * shrink the uncompressed image  
+* umount the share
   
 This may take like 3-4 hours. But the exact time depends on the sd card usage, sdcard type, network....  
 Let it run once so you may see if a package is missing.
+
+### Commandline arg
+For debug or single step you could start the script by:
+```-d``` 
+This will pause the script after the steps to give you either the chance to see in detail or abort with ```CTRL-C```
+
 
 ## crontab
  Of course the script could be used as a single execute, but I ran it on a monthly base.  
