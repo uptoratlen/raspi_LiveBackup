@@ -41,20 +41,24 @@ else
     echo "Creating Dir ${BACKUPPATH_MOUNT}/piimages"
     mkdir ${BACKUPPATH_MOUNT}/piimages
 fi
-date
-if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
 
+if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
+date
 dd if=/dev/mmcblk0 bs=64K status=progress | gzip -c > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz
 date
-pv ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz |gunzip > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}
-
 if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
+date
+pv ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}.gz |gunzip > ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}
+date
+if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
+date
 ${SCRIPT_PATH}/pishrink.sh -v ${BACKUPPATH_MOUNT}/piimages/${BACKUPFILE}
 date
 
 if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
 
 #Delete backups older than ${BACKUP_MAX_AGE} days
+echo "Cleanup of previous backups - delete older than ${BACKUP_MAX_AGE} days"
 /usr/bin/find ${BACKUPPATH_MOUNT}/piimages/ -name 'piimage_*.img*' -mtime +${BACKUP_MAX_AGE} -delete
 
 umount ${BACKUPPATH_MOUNT}
