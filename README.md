@@ -18,11 +18,12 @@
 
   
 # Overview  
-* Does a live backup to a img file to SMB share  
-* shrink the file with the help of pishrink  
-* cleanup on a regular base   
+* Script creates a live backup in form of a img.gz file on a SMB share 
+* unzips the gz file
+* shrink the file with the help of [PiShrink](https://github.com/Drewsif/PiShrink)  
+* cleanup of older backups
   
-So you already see:  nothing new. The only difference is that the script around [PiShrink](https://github.com/Drewsif/PiShrink) does it in one shot.  
+You may already noticed:  nothing new. The only difference is that the script uses [PiShrink](https://github.com/Drewsif/PiShrink), does the image from the raspi itself without shutdown and all in one script. 
   
 ## Background  
 First, again I created nothing new. I read multiple (hundreds?) of posts, websites to collect all the info. In other   
@@ -30,7 +31,7 @@ words, a lot of people are involved. Some only mentioned in one of the posts a c
 why not.   
 But who wrote it, to be honest that got lost a long the way of testing and trying.   
 Maybe a different person will take this as a starting pint to create something better.   
-In other words do not get offended by this, just ignore it in this case .  
+In other words do not get offended by this, just ignore it. 
   
 ## use case or why 
 The story goes like this:  
