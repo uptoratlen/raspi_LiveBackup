@@ -16,8 +16,7 @@ BACKUP_MAX_AGE=181 # days of retention
 SCRIPT_PATH=$(dirname "$(realpath $0)")
 
 echo Mounting: ${BACKUPPATH_REMOTE} as ${BACKUPPATH_MOUNT}/
-#mount -t cifs -o user=${BACKUP_USER},password=${BACKUP_PASSWORD},rw,file_mode=0777,dir_mode=0777 ${BACKUPPATH_REMOT$
-mount -t cifs -o user=${BACKUP_USER},password=${BACKUP_PASSWORD},uid=1000,gid=1001 ${BACKUPPATH_REMOTE} ${BACKUPPATH$
+mount -t cifs -o user=${BACKUP_USER},password=${BACKUP_PASSWORD},rw,file_mode=0777,dir_mode=0777 ${BACKUPPATH_REMOTE} ${BACKUPPATH_MOUNT}/
 
 if [ "$1" = "-d" ]; then  read -p "Press enter to continue" ; fi
 
